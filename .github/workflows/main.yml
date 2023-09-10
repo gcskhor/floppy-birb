@@ -107,7 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List build directory contents
-        run: ls -al build-WebGL
+        run: ls -al build-WebGL/
 
       - name: Push Artifacts to Floppy-Birb-Build
         env:
@@ -124,7 +124,7 @@ jobs:
 
           git checkout $TARGET_BRANCH
 
-          cp -r ./build-WebGL ./floppy-birb-build/
+          cp -r ../build-WebGL ./
 
           git add .
           git commit -m "Updated build artifacts"
