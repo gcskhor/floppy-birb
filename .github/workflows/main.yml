@@ -101,21 +101,29 @@ jobs:
           name: build-WebGL
           path: build/WebGL
 
-  deployPages:
+  deployBuild:
     needs: buildWebGL
-    name: Deploy to Github Pages 🚀
+    name: Deploy to Floppy-Birb-Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Push Artifacts to Floppy-Birb-Build
+        env:
+          TARGET_REPO: gcskhor/floppy-birb-build
+          TARGET_BRANCH: main
+          ACCESS_TOKEN: ${{ secrets.FLOPPY_BIRB_BUILD_ACCESS_TOKEN }}
+        run: |
+          git clone https://github.com/gcskhor/floppy-birb-build.git
 
-      - uses: actions/download-artifact@v2
-        with:
-          name: build-WebGL
-          path: build
+          git config --global user.name "gcskhor"
+          git config --global user.email "gcskhor@yahoo.com.sg"
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: build/WebGL
+          cd floppy-birb-build
+
+          git checkout $TARGET_BRANCH
+
+          cp -r ../build/WebGL .
+
+          git add .
+          git commit -m "Updated build artifacts"
+
+          git push https://${ACCESS_TOKEN}@github.com/$TARGET_REPO.git $TARGET_BRANCH
