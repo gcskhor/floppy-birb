@@ -107,7 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: List build directory contents
-        run: ls -al build/
+        run: ls -al build-WebGL
 
       - name: Push Artifacts to Floppy-Birb-Build
         env:
