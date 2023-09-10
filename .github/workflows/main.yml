@@ -106,6 +106,9 @@ jobs:
     name: Deploy to Floppy-Birb-Build
     runs-on: ubuntu-latest
     steps:
+      - name: List build directory contents
+        run: ls -al build/
+
       - name: Push Artifacts to Floppy-Birb-Build
         env:
           TARGET_REPO: gcskhor/floppy-birb-build
