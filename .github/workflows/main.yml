@@ -99,7 +99,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: build-WebGL
-          path: build/WebGL
+          path: .
 
   deployBuild:
     needs: buildWebGL
@@ -124,7 +124,7 @@ jobs:
 
           git checkout $TARGET_BRANCH
 
-          cp -r ../build/WebGL .
+          cp -r ./build-WebGL ./floppy-birb-build/
 
           git add .
           git commit -m "Updated build artifacts"
