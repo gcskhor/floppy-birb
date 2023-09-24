@@ -138,7 +138,7 @@ jobs:
 
           git checkout $TARGET_BRANCH
 
-          cp -r ../build-WebGL/build/WebGL ./
+          cp -r ../build-WebGL/* ./
 
           echo "After copying files:"
           ls -al
