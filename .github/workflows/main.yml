@@ -118,6 +118,12 @@ jobs:
           echo "Contents:"
           ls -al
 
+      - name: Check directory structure
+        run: |
+          echo "Printing directory structure:"
+          pwd
+          ls -alR
+
       - name: Push Artifacts to Floppy-Birb-Build
         env:
           TARGET_REPO: gcskhor/floppy-birb-build
